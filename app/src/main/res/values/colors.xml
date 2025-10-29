@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#3262C4</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorGreen">#0C400C</color>
+    <color name="colorPrimaryVariant">#53C353</color>
+    <color name="colorPrimaryLigth">#4CAF50</color>
+    <color name="colorWhite">#FFFFFF</color>
+
+    <color name="colorSecondary">#FFC107</color> <!-- Amarillo -->
+    <color name="colorSecondaryVariant">#FFA000</color>
+    <color name="colorOnSecondary">#000000</color>
+
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorOnBackground">#000000</color>
+
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#000000</color>
+
+    <color name="colorError">#B00020</color>
+    <color name="colorOnError">#FFFFFF</color>
+</resources>

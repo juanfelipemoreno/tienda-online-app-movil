@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/ListadoProductosFragment">
+
+    <fragment
+        android:id="@+id/ListadoProductosFragment"
+        android:name="com.example.tiendaonline.ListadoProductosFragment"
+        android:label="@string/listadoProductos"
+        tools:layout="@layout/fragment_listado_productos">
+    </fragment>
+
+    <fragment
+        android:id="@+id/carritoFragment"
+        android:name="com.example.tiendaonline.CarritoFragment"
+        android:label="Carrito"
+        tools:layout="@layout/fragment_carrito" />
+</navigation>
