@@ -2,18 +2,29 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/ListadoProductosFragment">
+    app:startDestination="@id/MenuNavegacion">
+
+    <fragment
+        android:id="@+id/MenuNavegacion"
+        android:name="com.example.tiendaonline.MenuNavegacionFragment"
+        android:label="@string/menuNavegacion"
+        tools:layout="@layout/fragment_menu_navegacion"/>
 
     <fragment
         android:id="@+id/ListadoProductosFragment"
         android:name="com.example.tiendaonline.ListadoProductosFragment"
         android:label="@string/listadoProductos"
-        tools:layout="@layout/fragment_listado_productos">
-    </fragment>
+        tools:layout="@layout/fragment_listado_productos"/>
 
     <fragment
         android:id="@+id/carritoFragment"
         android:name="com.example.tiendaonline.CarritoFragment"
         android:label="Carrito"
         tools:layout="@layout/fragment_carrito" />
+
+    <fragment
+        android:id="@+id/registrarClientesFragment"
+        android:name="com.example.tiendaonline.RegistrarClientesFragment"
+        android:label="Registro Clientes"
+        tools:layout="@layout/fragment_registrar_clientes" />
 </navigation>

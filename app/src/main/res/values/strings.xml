@@ -64,5 +64,12 @@
     <string name="valor_total">$240.000</string>
     <string name="finalizar_compra">Finalizar Compra</string>
     <string name="carrito">Carrito</string>
+    <string name="RegistrarClientes">Registrar Clientes</string>
+    <string name="menuNavegacion">Menu Navegacion</string>
+    <string name="registrar">Registrar</string>
+    <string name="telefono">Teléfono</string>
+    <string name="correo_electronico">Correo electrónico</string>
+    <string name="nombre_completo">Nombre completo</string>
+    <string name="registro_de_clientes">Registro de Clientes</string>
 
 </resources>
