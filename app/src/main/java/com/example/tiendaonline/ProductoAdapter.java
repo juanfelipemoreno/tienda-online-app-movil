@@ -1,5 +1,6 @@
 package com.example.tiendaonline;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +10,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tiendaonline.data.db.DatabaseHelper;
+import com.example.tiendaonline.data.db.UsuariosDao;
+import com.example.tiendaonline.data.model.Productos;
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHolder> {
 
-    private List<Producto> listaProductos;
+    private List<Productos> listaProductos;
 
-    public ProductoAdapter(List<Producto> listaProductos) {
+    public ProductoAdapter(List<Productos> listaProductos) {
+
         this.listaProductos = listaProductos;
     }
 
@@ -29,11 +36,17 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Producto producto = listaProductos.get(position);
+        Productos producto = listaProductos.get(position);
         holder.txtNombreProducto.setText(producto.getNombre());
         holder.txtDescripcion.setText(producto.getDescripcion());
-        holder.txtPrecio.setText("$" + producto.getPrecio());
-        holder.imgProducto.setImageResource(producto.getImagenResId());
+        holder.txtPrecio.setText(String.format("$ %.2f", producto.getPrecio()));
+
+
+        Glide.with(holder.itemView.getContext())
+                .load(producto.getImagenUrl())               // puede ser URL o ruta local
+                .placeholder(R.drawable.ic_placeholder)       // imagen mientras carga
+                .error(R.drawable.ic_placeholder)                   // si falla la carga
+                .into(holder.imgProducto);
     }
 
     @Override

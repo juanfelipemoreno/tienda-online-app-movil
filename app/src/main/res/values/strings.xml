@@ -71,5 +71,9 @@
     <string name="correo_electronico">Correo electrónico</string>
     <string name="nombre_completo">Nombre completo</string>
     <string name="registro_de_clientes">Registro de Clientes</string>
+    <string name="crear_cuenta">Crear Cuenta</string>
+    <string name="nro_identificacion">Nro Identificacion</string>
+    <string name="nombre">Nombre</string>
+    <string name="register">Registrar</string>
 
 </resources>

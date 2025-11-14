@@ -1,5 +1,6 @@
 package com.example.tiendaonline;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,11 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.tiendaonline.data.db.DatabaseHelper;
+import com.example.tiendaonline.data.db.ProductosDao;
+import com.example.tiendaonline.data.db.UsuariosDao;
+import com.example.tiendaonline.data.model.Productos;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +24,7 @@ public class ListadoProductosFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProductoAdapter adapter;
     private List<Producto> listaProductos;
+    private ProductosDao productosDao;
 
     public ListadoProductosFragment() {
 
@@ -26,7 +33,6 @@ public class ListadoProductosFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -38,11 +44,12 @@ public class ListadoProductosFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerProductos);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        listaProductos = new ArrayList<>();
-        listaProductos.add(new Producto("Camiseta Nike", "Deportiva y cómoda", 120000, R.drawable.ic_launcher_foreground));
-        listaProductos.add(new Producto("Pantalón Adidas", "Original, color negro", 180000, R.drawable.ic_launcher_foreground));
-        listaProductos.add(new Producto("Zapatos Puma", "Para correr", 250000, R.drawable.ic_launcher_foreground));
+        DatabaseHelper helper = new DatabaseHelper(getContext());
+        SQLiteDatabase db = helper.getWritableDatabase();
+        productosDao = new ProductosDao(getContext(),db);
 
+        List<Productos> listaProductos = productosDao.listar();
+        System.out.println(listaProductos);
         // Creamos y asignamos el adaptador
         adapter = new ProductoAdapter(listaProductos);
         recyclerView.setAdapter(adapter);

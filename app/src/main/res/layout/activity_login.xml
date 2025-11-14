@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.16000003" />
 
     <EditText
-        android:id="@+id/inputUser"
+        android:id="@+id/inputUsuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -64,12 +64,12 @@
         android:paddingBottom="14dp"
         android:textColor="@color/colorWhite"
         android:textColorHint="@color/colorWhite"
-        app:layout_constraintEnd_toEndOf="@+id/inputUser"
-        app:layout_constraintStart_toStartOf="@+id/inputUser"
-        app:layout_constraintTop_toBottomOf="@+id/inputUser" />
+        app:layout_constraintEnd_toEndOf="@+id/inputUsuario"
+        app:layout_constraintStart_toStartOf="@+id/inputUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/inputUsuario" />
 
     <TextView
-        android:id="@+id/BtnOlvidePassword"
+        android:id="@+id/BtnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -79,8 +79,20 @@
         app:layout_constraintEnd_toEndOf="@+id/inputPassword"
         app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
+    <TextView
+        android:id="@+id/btnCrearCuenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:text="@string/crear_cuenta"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="@+id/btnRegister"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -89,9 +101,9 @@
         android:textColor="@color/colorGreen"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/BtnOlvidePassword"
+        app:layout_constraintEnd_toEndOf="@+id/BtnLogin"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/inputPassword"
-        app:layout_constraintTop_toBottomOf="@+id/BtnOlvidePassword" />
+        app:layout_constraintTop_toBottomOf="@+id/BtnLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

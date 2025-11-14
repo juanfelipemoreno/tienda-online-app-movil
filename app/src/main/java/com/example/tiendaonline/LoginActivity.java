@@ -1,6 +1,7 @@
 package com.example.tiendaonline;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -9,9 +10,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.tiendaonline.data.db.DatabaseHelper;
+import com.example.tiendaonline.data.db.UsuariosDao;
+import com.example.tiendaonline.data.model.Usuarios;
+
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private EditText usuario;
+    private EditText password;
+    private UsuariosDao usuariosDao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,10 +36,48 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button btnLogin = findViewById(R.id.btnLogin);
+        DatabaseHelper helper = new DatabaseHelper(this);
+        SQLiteDatabase db = helper.getWritableDatabase();
+        usuariosDao = new UsuariosDao(this,db);
+
+        usuario = findViewById(R.id.inputUsuario);
+        password = findViewById(R.id.inputPassword);
+
+        Button btnLogin = findViewById(R.id.btnRegister);
         btnLogin.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            validateLogin();
+        });
+
+        TextView btnCrearCuenta = findViewById(R.id.btnCrearCuenta);
+
+        btnCrearCuenta.setOnClickListener(v->{
+            Intent intent = new Intent(this, RegisterActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void validateLogin(){
+        String usuarioData = usuario.getText().toString().trim();
+        String passwordData = password.getText().toString().trim();
+
+        if (usuarioData.isEmpty() || passwordData.isEmpty() ) {
+            Toast.makeText(this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        List<Usuarios> u = usuariosDao.obtenerPorNro(usuarioData);
+
+        if (u.isEmpty()) {
+            Toast.makeText(this, "No hay usuarios registrado con este documento", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Usuarios user = usuariosDao.validarLogin(usuarioData,passwordData);
+
+        if (user != null) {
+            Toast.makeText(this, "✅ Bienvenido", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }
