@@ -1,6 +1,5 @@
 package com.example.tiendaonline;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tiendaonline.data.db.DatabaseHelper;
-import com.example.tiendaonline.data.db.UsuariosDao;
 import com.example.tiendaonline.data.model.Productos;
 import com.bumptech.glide.Glide;
 
