@@ -1,6 +1,7 @@
 package com.example.tiendaonline;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
@@ -28,6 +29,19 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Verificar si ya hay sesión activa
+        SharedPreferences prefs = getSharedPreferences("user_session", MODE_PRIVATE);
+        boolean isLoggedIn = prefs.getBoolean("is_logged_in", false);
+
+        if (isLoggedIn) {
+            // Si ya está logueado, ir directo a MainActivity
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -75,6 +89,15 @@ public class LoginActivity extends AppCompatActivity {
         Usuarios user = usuariosDao.validarLogin(usuarioData,passwordData);
 
         if (user != null) {
+            // Guardar sesión en SharedPreferences
+            SharedPreferences prefs = getSharedPreferences("user_session", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("is_logged_in", true);
+            editor.putInt("user_id", user.getId());
+            editor.putString("user_name", user.getNombre());
+            editor.putString("user_identificacion", user.getIdentificacion());
+            editor.apply();
+
             Toast.makeText(this, "✅ Bienvenido", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);

@@ -11,6 +11,7 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:padding="10dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,6 +48,37 @@
             android:inputType="phone"
             android:padding="10dp"
             android:background="@drawable/edittext_bg"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/etDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/direcci_n_opcional"
+            android:inputType="text"
+            android:padding="10dp"
+            android:background="@drawable/edittext_bg"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/tvUbicacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_hay_ubicaci_n_registrada"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:background="@drawable/edittext_bg"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnObtenerUbicacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/obtener_mi_ubicaci_n"
+            android:backgroundTint="@color/colorPrimaryLigth"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:padding="12dp"
             android:layout_marginBottom="12dp" />
 
         <Button

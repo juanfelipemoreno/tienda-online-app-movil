@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "marketplace.db";
-    private static final int DB_VERSION = 3;
+    private static final int DB_VERSION = 4;
 
     public DatabaseHelper(Context context){
         super(context, DB_NAME, null, DB_VERSION);
@@ -17,10 +17,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(@NonNull SQLiteDatabase db){
         db.execSQL("CREATE TABLE usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT, identificacion TEXT UNIQUE NOT NULL, nombre TEXT NOT NULL, password TEXT NOT NULL)");
-        db.execSQL("CREATE TABLE clientes (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, email TEXT)");
+        db.execSQL("CREATE TABLE clientes (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, email TEXT UNIQUE, telefono TEXT, direccion TEXT, latitud REAL, longitud REAL)");
         db.execSQL("CREATE TABLE productos (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, descripcion TEXT, precio REAL, imagenUrl TEXT)");
         db.execSQL("CREATE TABLE pedidos (id INTEGER PRIMARY KEY AUTOINCREMENT, id_cliente INTEGER, fecha TEXT)");
         db.execSQL("CREATE TABLE detalle_pedido (id INTEGER PRIMARY KEY AUTOINCREMENT, id_pedido INTEGER, id_producto INTEGER, cantidad INTEGER)");
+        db.execSQL("CREATE TABLE carrito (id INTEGER PRIMARY KEY AUTOINCREMENT, id_usuario INTEGER, id_producto INTEGER, cantidad INTEGER, UNIQUE(id_usuario, id_producto))");
 
         insertarProductosIniciales(db);
     }
@@ -32,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS productos");
         db.execSQL("DROP TABLE IF EXISTS pedidos");
         db.execSQL("DROP TABLE IF EXISTS detalle_pedido");
+        db.execSQL("DROP TABLE IF EXISTS carrito");
         onCreate(db);
     }
 

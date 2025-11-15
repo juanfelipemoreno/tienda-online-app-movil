@@ -75,5 +75,10 @@
     <string name="nro_identificacion">Nro Identificacion</string>
     <string name="nombre">Nombre</string>
     <string name="register">Registrar</string>
+    <string name="obtener_mi_ubicaci_n">📍 Obtener Mi Ubicación</string>
+    <string name="no_hay_ubicaci_n_registrada">📍 No hay ubicación registrada</string>
+    <string name="direcci_n_opcional">Dirección (opcional)</string>
+    <string name="_0">$0</string>
+    <string name="subtotal_0">Subtotal: $0</string>
 
 </resources>
