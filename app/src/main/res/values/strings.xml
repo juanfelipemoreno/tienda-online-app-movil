@@ -80,5 +80,8 @@
     <string name="direcci_n_opcional">Dirección (opcional)</string>
     <string name="_0">$0</string>
     <string name="subtotal_0">Subtotal: $0</string>
+    <string name="agregar_producto">Agregar producto</string>
+    <string name="administra_tu_cat_logo_de_productos">Administra tu catálogo de productos</string>
+    <string name="gesti_n_de_productos">📦 Gestión de Productos</string>
 
 </resources>

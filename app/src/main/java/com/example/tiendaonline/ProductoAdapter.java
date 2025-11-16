@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,8 +26,16 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
 
     private List<Productos> listaProductos;
     private Context context;
-    public ProductoAdapter(List<Productos> listaProductos) {
+    private OnProductoListener listener;
+
+    public interface OnProductoListener {
+        void onEditarProducto(Productos producto);
+        void onEliminarProducto(Productos producto);
+    }
+
+    public ProductoAdapter(List<Productos> listaProductos, OnProductoListener listener) {
         this.listaProductos = listaProductos;
+        this.listener = listener;
     }
 
     @NonNull
@@ -54,6 +63,18 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
 
         holder.btnAgregarCarrito.setOnClickListener(v -> {
             agregarAlCarrito(producto);
+        });
+
+        holder.btnEditar.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onEditarProducto(producto);
+            }
+        });
+
+        holder.btnEliminar.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onEliminarProducto(producto);
+            }
         });
     }
 
@@ -84,10 +105,16 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
         return listaProductos.size();
     }
 
+    public void actualizarLista(List<Productos> nuevaLista) {
+        this.listaProductos = nuevaLista;
+        notifyDataSetChanged();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtNombreProducto, txtDescripcion, txtPrecio;
         ImageView imgProducto;
         Button btnAgregarCarrito;
+        ImageButton btnEditar, btnEliminar;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,6 +123,8 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.ViewHo
             txtPrecio = itemView.findViewById(R.id.txtPrecio);
             imgProducto = itemView.findViewById(R.id.imgProducto);
             btnAgregarCarrito = itemView.findViewById(R.id.btnAgregarCarrito);
+            btnEditar = itemView.findViewById(R.id.btnEditarProducto);
+            btnEliminar = itemView.findViewById(R.id.btnEliminarProducto);
         }
     }
 }
