@@ -74,7 +74,7 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Editar"
                     android:src="@android:drawable/ic_menu_edit"
-                    app:tint="@color/colorPrimaryLigth" />
+                    app:tint="@color/colorWhite" />
 
                 <ImageButton
                     android:id="@+id/btnEliminarProducto"
@@ -83,7 +83,7 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Eliminar"
                     android:src="@android:drawable/ic_menu_delete"
-                    app:tint="#B00020" />
+                    app:tint="@color/design_default_color_error" />
             </LinearLayout>
         </LinearLayout>
 

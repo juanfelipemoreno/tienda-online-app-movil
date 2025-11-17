@@ -8,7 +8,11 @@
         android:icon="@drawable/ic_carrito"
         android:title="@string/carrito"
         app:showAsAction="always" />
-
+    <item
+        android:id="@+id/action_logout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/cerrar_sesi_n"
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

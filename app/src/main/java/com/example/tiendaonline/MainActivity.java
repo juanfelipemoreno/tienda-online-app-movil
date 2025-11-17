@@ -1,12 +1,11 @@
 package com.example.tiendaonline;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
-
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -17,6 +16,7 @@ import com.example.tiendaonline.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,11 +58,43 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_logout) {
+            mostrarDialogoCerrarSesion();
+            return true;
+        }
+
         if (id == R.id.action_settings) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void mostrarDialogoCerrarSesion() {
+        new AlertDialog.Builder(this)
+                .setTitle("Cerrar Sesión")
+                .setMessage("¿Estás seguro que deseas cerrar sesión?")
+                .setPositiveButton("Sí, cerrar", (dialog, which) -> {
+                    cerrarSesion();
+                })
+                .setNegativeButton("Cancelar", null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+    private void cerrarSesion() {
+        // Limpiar SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("user_session", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.apply();
+
+        Toast.makeText(this, "Sesión cerrada exitosamente", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
     @Override

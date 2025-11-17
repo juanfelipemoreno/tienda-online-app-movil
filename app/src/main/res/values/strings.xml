@@ -83,5 +83,6 @@
     <string name="agregar_producto">Agregar producto</string>
     <string name="administra_tu_cat_logo_de_productos">Administra tu catálogo de productos</string>
     <string name="gesti_n_de_productos">📦 Gestión de Productos</string>
+    <string name="cerrar_sesi_n">Cerrar Sesión</string>
 
 </resources>
